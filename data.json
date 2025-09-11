@@ -1,0 +1,16 @@
+{
+  "website": [],
+  "aboutUs": [
+    {
+      "MainTitle": "主標題",
+      "SubTitle": "副標題",
+      "Introduction": "介紹",
+      "BackgroundPic": "dataImages\\aboutUs\\success-story.jpg",
+      "Founder": "創辦人",
+      "FounderIntroduction": "創辦人介紹",
+      "FounderPic": "創辦人圖片"
+    }
+  ],
+  "previousEvent": [],
+  "course": []
+}

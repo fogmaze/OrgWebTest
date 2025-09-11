@@ -2,17 +2,21 @@
 
 @@include('blocks/navigation.htm', {"about": "active"})
 
-@@include('blocks/page-title.htm', {"page-link": "index.html", "page-title" : "Home" , "nasted" : "nasted" , "description" : "Our courses offer a good compromise between the continuous assessment favoured by some universities and the emphasis placed on final exams by others.", "single-page-title": "About Us" })
+@@include('blocks/page-title.htm', {
+  "page-link": "index.html", 
+  "page-title" : "Home" , 
+  "nasted" : "nasted" , 
+  "description" : "Our courses offer a good compromise between the continuous assessment favoured by some universities and the emphasis placed on final exams by others.", 
+  "single-page-title": "About Us" })
 
 <!-- about -->
 <section class="section">
   <div class="container">
     <div class="row">
       <div class="col-12">
-        <img class="img-fluid w-100 mb-4" src="images/about/about-page.jpg" alt="about image">
-        <h2 class="section-title">ABOUT OUR JOURNY</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et.dolore magna aliqua. Ut enim ad minim veniam, quis nostrud. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe ipsa illo quod veritatis, magni debitis fugiat dolore voluptates! Consequatur, aliquid. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat perferendis sint optio similique. Et amet magni facilis vero corporis quos.</p>
-        <p>exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsum a, facere fugit error accusamus est officiis vero in, nostrum laboriosam corrupti explicabo, cumque repudiandae deleniti perspiciatis quae consectetur enim. Laboriosam!</p>
+        <img class="img-fluid w-100 mb-4" src="{{data.aboutUs[0].BackgroundPic}}" alt="about image">
+        <h2 class="section-title">{{data.aboutUs[0].MainTitle}}</h2>
+        <p>{{data.aboutUs[0].Subtitle}}</p>
       </div>
     </div>
   </div>
