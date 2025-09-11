@@ -11,7 +11,7 @@ npm install
 
 ### 日常資料更新
 
-更新 data/data.xlsx 中的資料，若是圖片內容則可放在 data/dataImages 下面，並在 data/data.xlsx 中的對應欄位以右鍵加入連結的方式將相對路徑填入儲存格中。
+若有新的內容，更新 data/data.xlsx 中的資料，若是圖片內容則可放在 data/dataImages 下面，並在 data/data.xlsx 中的對應欄位以右鍵加入連結的方式將相對路徑填入儲存格中。
 
 更新好資料後，運行
 ```bash
