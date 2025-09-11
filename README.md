@@ -1,7 +1,7 @@
 # A website
 
 ## Setup
-本項目使用node.js，配合gulp、nunjucks等套件進行靜態網站生成。
+本項目使用node.js，配合gulp、nunjucks等套件進行靜態網站生成，使用Bootstrap風格定義模板。
 要建置此專案，你需要先安裝npm，並用以下指令安裝依賴
 ```bash
 npm install
@@ -39,8 +39,9 @@ npm run dev
 ```
 ## TODO
 1. 將模板網站上的資料連結到xlsx中 (模板中的圖片好像都沒有授權)
-2. 找一個好的上架流程、託管網站
-3. domain
+2. 修改模板以更符合需求
+3. 找一個好的上架流程、託管網站
+4. domain
 ## License
 
 Copyright (c) 2016 - Present, Designed & Developed by [Themefisher](https://themefisher.com)
