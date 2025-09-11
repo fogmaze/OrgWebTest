@@ -33,6 +33,16 @@ npm run dev
 ```
 在修改後即時更新網頁狀態
 
+### Development Detail
+專案建置方法定義在gulpfile.js，建置時會將data/data.xlsx的內容根據nunjucks填入在source資料夾定義好的模板中。
+在source下的html中，可以使用以下程式碼將data.xlsx的資料填入html中
+```
+{{data.sheetName[lineIndex].key}}
+```
+#### TODO
+1. 將模板網站上的資料連結到xlsx中 (模板中的圖片好像都沒有授權)
+2. 找一個好的上架流程、託管網站
+3. domain
 ## License
 
 Copyright (c) 2016 - Present, Designed & Developed by [Themefisher](https://themefisher.com)
