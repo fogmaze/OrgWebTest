@@ -2,7 +2,7 @@
 
 ## Setup
 本項目使用node.js，配合gulp、nunjucks等套件進行靜態網站生成。
-要件至此專案，你需要先安裝npm，並用以下指令安裝依賴
+要建置此專案，你需要先安裝npm，並用以下指令安裝依賴
 ```bash
 npm install
 ```
