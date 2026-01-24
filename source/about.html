@@ -14,7 +14,7 @@
   <div class="container">
     <div class="row">
       <div class="col-12">
-        <img class="img-fluid w-100 mb-4" src="{{data.aboutUs[0].BackgroundPic}}" alt="about image">
+        <img class="img-fluid w-100 mb-4" src="{{data.aboutUs[0].BackgroundPic | replace('\\\\', '/')}}" alt="about image">
         <h2 class="section-title">{{data.aboutUs[0].MainTitle}}</h2>
         <p>{{data.aboutUs[0].LongIntro}}</p>
       </div>

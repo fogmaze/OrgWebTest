@@ -1,19 +1,11 @@
 <!DOCTYPE html>
-
-<!--
- // WEBSITE: https://themefisher.com
- // TWITTER: https://twitter.com/themefisher
- // FACEBOOK: https://www.facebook.com/themefisher
- // GITHUB: https://github.com/themefisher/
--->
-
 <html lang="en">
 <head>
 
   <!-- Basic Page Needs
 	================================================== -->
   <meta charset="utf-8">
-  <title>{{data.website[0].websiteTitle}}</title>
+  <title>Title</title>
 
   <!-- Mobile Specific Metas
 	================================================== -->
@@ -88,7 +80,7 @@
   <div class="navigation w-100">
     <div class="container">
       <nav class="navbar navbar-expand-lg navbar-dark p-0">
-        <a class="navbar-brand" href="index.html"><img src="{{data.website[0].middleLogo}}" alt="logo"></a>
+        <a class="navbar-brand" href="index.html"><img src="dataImages/middleLogo.png" alt="logo"></a>
         <button class="navbar-toggler rounded-0" type="button" data-toggle="collapse" data-target="#navigation"
           aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -420,29 +412,13 @@
 
 <!-- footer -->
 <footer>
-  <!-- newsletter -->
-  <div class="newsletter">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-9 ml-auto bg-primary py-5 newsletter-block">
-          <h3 class="text-white">Subscribe Now</h3>
-          <form action="#">
-            <div class="input-wrapper">
-              <input type="email" class="form-control border-0" id="newsletter" name="newsletter" placeholder="Enter Your Email...">
-              <button type="submit" value="send" class="btn btn-primary">Join</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
   <!-- footer content -->
   <div class="footer bg-footer section border-bottom">
     <div class="container">
       <div class="row">
         <div class="col-lg-4 col-sm-8 mb-5 mb-lg-0">
           <!-- logo -->
-          <a class="logo-footer" href="index.html"><img class="img-fluid mb-4" src="images/logo.png" alt="logo"></a>
+          <a class="logo-footer" href="index.html"><img class="img-fluid mb-4" src="dataImages/middleLogo.png" alt="logo"></a>
           <ul class="list-unstyled">
             <li class="mb-2">23621 15 Mile Rd #C104, Clinton MI, 48035, New York, USA</li>
             <li class="mb-2">+1 (2) 345 6789</li>
@@ -503,7 +479,6 @@
               var CurrentYear = new Date().getFullYear()
               document.write(CurrentYear)
             </script> 
-            , designed & developed by <a href="https://themefisher.com/" class="text-muted">Themefisher</a>
           </p>
         </div>
         <div class="col-sm-5 text-sm-right text-center">
@@ -519,6 +494,7 @@
   </div>
 </footer>
 <!-- /footer -->
+
 
 <!-- jQuery -->
 <script src="plugins/jQuery/jquery.min.js"></script>
@@ -538,6 +514,32 @@
 
 <!-- Main Script -->
 <script src="js/script.js"></script>
+<script>
+  (function () {
+    if (typeof $ === "undefined") {
+      return;
+    }
+    if (!document.getElementById("navigation")) {
+      return;
+    }
+    if (typeof $("body").scrollspy !== "function") {
+      return;
+    }
+    $("body")
+      .attr("data-spy", "scroll")
+      .attr("data-target", "#navigation")
+      .attr("data-offset", "110")
+      .css("position", "relative")
+      .scrollspy("dispose")
+      .scrollspy({
+        target: "#navigation",
+        offset: 110
+      });
+    $(window).on("load", function () {
+      $("body").scrollspy("refresh");
+    });
+  })();
+</script>
 
 </body>
 </html>

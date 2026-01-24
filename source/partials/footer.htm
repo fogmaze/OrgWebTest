@@ -16,6 +16,32 @@
 
 <!-- Main Script -->
 <script src="js/script.js"></script>
+<script>
+  (function () {
+    if (typeof $ === "undefined") {
+      return;
+    }
+    if (!document.getElementById("navigation")) {
+      return;
+    }
+    if (typeof $("body").scrollspy !== "function") {
+      return;
+    }
+    $("body")
+      .attr("data-spy", "scroll")
+      .attr("data-target", "#navigation")
+      .attr("data-offset", "110")
+      .css("position", "relative")
+      .scrollspy("dispose")
+      .scrollspy({
+        target: "#navigation",
+        offset: 110
+      });
+    $(window).on("load", function () {
+      $("body").scrollspy("refresh");
+    });
+  })();
+</script>
 
 </body>
 </html>

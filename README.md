@@ -9,7 +9,10 @@ npm install
 
 ## 日常資料更新
 
-若有新的內容，更新 data/data.xlsx 中的資料，若是圖片內容則可放在 data/dataImages 下面，並在 data/data.xlsx 中的對應欄位以右鍵加入連結的方式將相對路徑填入儲存格中。
+若有新的內容，更新 data/data.xlsx 中的資料，請根據不同資料表中定義好的格式寫入：
+  公告與課程資料表中一行代表一個課程/公告，若要新增資料請自行編號index後創建新的一筆資料，index不能重複。
+  若是圖片內容則可放在 data/dataImages 下面，並在 data/data.xlsx 中的對應欄位以右鍵加入連結的方式將相對路徑填入儲存格中(用相對路徑)。
+  若是公告中要加入attachment則放在data/dataAttachments中，然後在data.xlsx的attachments資料表中加上該公告的index與attachment 文件的連結(和圖片一樣的方法)。
 
 更新好資料後，運行
 ```bash
@@ -31,17 +34,22 @@ npm run dev
 ```
 在修改後即時更新網頁狀態
 
-## Development Detail
-專案建置方法定義在gulpfile.js，建置時會將data/data.xlsx的內容根據nunjucks填入在source資料夾定義好的模板中。
+建議使用vscode內建的copilot或是codex 進行 vibe coding。
+
+## Trouble shooting
+
+建議使用vscode內建的copilot或是codex 進行 vibe coding。
+
+## Development Detail & Framework
+專案建置方法定義在gulpfile.js，建置時會將data/data.xlsx的內容透過nunjucks填入在source資料夾定義好的模板中。
 在source下的html中，可以使用以下程式碼將data.xlsx的資料填入html中(注意lineIndex的地方有點反直覺)
 ```
 {{data.sheetName[lineIndex].key}}
 ```
 ## TODO
-1. 將模板網站上的資料連結到xlsx中 (模板中的圖片好像都沒有授權)
-2. 修改模板以更符合需求
-3. 找一個好的上架流程、託管網站
-4. domain
+1. 確認內容與排版 footer.htm須改
+2. 找一個好的上架流程、託管網站
+3. domain
 ## License
 
 Copyright (c) 2016 - Present, Designed & Developed by [Themefisher](https://themefisher.com)

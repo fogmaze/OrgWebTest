@@ -1,81 +1,258 @@
 @@include('header.htm')
 
-@@include('blocks/navigation.htm', {"home": "active"})
+@@include('blocks/navigation-onepage.htm')
 
-@@include('blocks/slider.htm')
+<style>
+  .anchor-section {
+    scroll-margin-top: 90px;
+  }
+  .nav-compact {
+    flex-wrap: wrap;
+  }
+  .nav-compact .nav-link {
+    padding: 0.5rem 0.9rem;
+    font-size: 1.05rem;
+  }
+  .nav-compact .nav-item {
+    margin: 0 14px;
+  }
+  .onepage-nav .navbar-nav {
+    gap: 6px;
+  }
+  .onepage-nav .container {
+    max-width: 960px;
+  }
+  .onepage-nav .navbar-nav {
+    display: inline-flex;
+    width: auto;
+    background: #ffbc3b;
+    padding: 0 14px;
+  }
+  .notice-date {
+    width: 120px;
+    min-width: 120px;
+    height: 120px;
+    padding: 0;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    line-height: 1.1;
+    text-align: center;
+    margin: 0 auto;
+    vertical-align: middle;
+  }
+  .notice-date .notice-year {
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+  }
+  .notice-date .notice-md {
+    font-size: 1.1rem;
+    font-weight: 700;
+  }
+  .notice-date .h2 {
+    margin: 0;
+  }
+  .notice-row .d-md-table-cell {
+    vertical-align: middle;
+  }
+  .notice-detail-row {
+    margin-top: -16px;
+  }
+  .notice-detail-card {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+  .notice-attachments {
+    margin-top: 0.75rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid #e3e6ef;
+  }
+  .notice-attachments-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-bottom: 0.35rem;
+  }
+  .notice-attachment-link {
+    display: inline-flex;
+    align-items: center;
+    font-weight: 600;
+  }
+  footer .footer.section {
+    padding-top: 50px;
+    padding-bottom: 40px;
+  }
+  footer .copyright.py-4 {
+    padding-top: 16px !important;
+    padding-bottom: 16px !important;
+  }
+</style>
 
-<!--@@include('blocks/banner-feature.htm') -->
-'
-@@include('blocks/about.htm')
+<div id="top" class="anchor-section"></div>
 
+<!-- hero slider (onepage) -->
+<section class="hero-section overlay bg-cover" data-background="{{ data.website[0].heroBg | replace('\\\\', '/') }}">
+  <div class="container">
+    <div class="hero-slider">
+      <!-- slider item -->
+      <div class="hero-slider-item">
+        <div class="row">
+          <div class="col-md-8">
+            <h1 class="text-white" data-animation-out="fadeOutRight" data-delay-out="5" data-duration-in=".3" data-animation-in="fadeInLeft" data-delay-in=".1">{{ data.website[0].hero1Title }}</h1>
+            <p class="text-muted mb-4" data-animation-out="fadeOutRight" data-delay-out="5" data-duration-in=".3" data-animation-in="fadeInLeft" data-delay-in=".4">{{ data.website[0].hero1Text }}</p>
+          </div>
+        </div>
+      </div>
+      <!-- slider item -->
+      <div class="hero-slider-item">
+        <div class="row">
+          <div class="col-md-8">
+            <h1 class="text-white" data-animation-out="fadeOutUp" data-delay-out="5" data-duration-in=".3" data-animation-in="fadeInDown" data-delay-in=".1">{{ data.website[0].hero2Title }}</h1>
+            <p class="text-muted mb-4" data-animation-out="fadeOutUp" data-delay-out="5" data-duration-in=".3" data-animation-in="fadeInDown" data-delay-in=".4">{{ data.website[0].hero2Text }}</p>
+          </div>
+        </div>
+      </div>
+      <!-- slider item -->
+      <div class="hero-slider-item">
+        <div class="row">
+          <div class="col-md-8">
+            <h1 class="text-white" data-animation-out="fadeOutDown" data-delay-out="5" data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".1">{{ data.website[0].hero3Title }}</h1>
+            <p class="text-muted mb-4" data-animation-out="fadeOutDown" data-delay-out="5" data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".4">{{ data.website[0].hero3Text }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /hero slider -->
+
+<!-- about -->
+<section id="about" class="section anchor-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <h2 class="section-title">關於我們</h2>
+      </div>
+    </div>
+    <div class="row align-items-center">
+      <div class="col-md-6 mb-4 mb-md-0">
+        <img class="img-fluid w-100" src="{{data.aboutUs[0].BackgroundPic | replace('\\\\', '/')}}" alt="about image">
+      </div>
+      <div class="col-md-6">
+        <p>{{data.aboutUs[0].LongIntro}}</p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /about -->
 <!-- courses -->
-<section class="section-sm">
+<section id="courses" class="section-sm anchor-section">
   <div class="container">
     <div class="row">
       <div class="col-12">
         <div class="d-flex align-items-center section-title justify-content-between">
-          <h2 class="mb-0 text-nowrap mr-3">Our Course</h2>
+          <h2 class="mb-0 text-nowrap mr-3">課程總覽</h2>
           <div class="border-top w-100 border-primary d-none d-sm-block"></div>
-          <div>
-            <a href="courses.html" class="btn btn-sm btn-outline-primary ml-sm-3 d-none d-sm-block">see all</a>
-          </div>
+          <div></div>
         </div>
       </div>
     </div>
     @@include('blocks/course.htm')
-    <!-- mobile see all button -->
-    <div class="row">
-      <div class="col-12 text-center">
-        <a href="courses.html" class="btn btn-sm btn-outline-primary d-sm-none d-inline-block">sell all</a>
-      </div>
-    </div>
+    <div class="row"></div>
   </div>
 </section>
 <!-- /courses -->
 
-@@include('blocks/cta.htm')
-
-@@include('blocks/success-story.htm')
-
-<!-- events -->
-<section class="section bg-gray">
+<!-- notice -->
+<section id="news" class="section pt-0 anchor-section">
   <div class="container">
     <div class="row">
       <div class="col-12">
-        <div class="d-flex align-items-center section-title justify-content-between">
-          <h2 class="mb-0 text-nowrap mr-3">Upcoming Events</h2>
-          <div class="border-top w-100 border-primary d-none d-sm-block"></div>
-          <div>
-            <a href="events.html" class="btn btn-sm btn-outline-primary ml-sm-3 d-none d-sm-block">see all</a>
-          </div>
-        </div>
+        <h2 class="section-title">最新公告</h2>
       </div>
     </div>
-    @@include('blocks/events.htm')
-    <!-- mobile see all button -->
     <div class="row">
-      <div class="col-12 text-center">
-        <a href="course.html" class="btn btn-sm btn-outline-primary d-sm-none d-inline-block">sell all</a>
+      <div class="col-12">
+        <ul class="list-unstyled">
+          {% if data.announcement and data.announcement.length %}
+            {% for item in data.announcement %}
+            <li class="d-md-table mb-4 w-100 border-bottom hover-shadow notice-row">
+              <div class="d-md-table-cell text-center p-4 bg-primary text-white mb-4 mb-md-0 notice-date">
+                <span class="notice-year">{{ item.dateYear or "--" }}</span>
+                <span class="notice-md">{{ item.dateMd or item.dateText or item.date }}</span>
+              </div>
+              <div class="d-md-table-cell px-4 vertical-align-middle mb-4 mb-md-0">
+                <span class="h4 mb-3 d-block">{{ item.Title }}</span>
+                <p class="mb-0">{{ item.shortText }}</p>
+              </div>
+              <div class="d-md-table-cell text-right pr-0 pr-md-4 align-middle">
+                {% if item.DetailText %}
+                <button class="btn btn-sm btn-outline-primary" type="button" data-toggle="collapse" data-target="#notice-detail-{{ loop.index0 }}" aria-expanded="false" aria-controls="notice-detail-{{ loop.index0 }}">
+                  查看詳情
+                </button>
+                {% endif %}
+              </div>
+            </li>
+            {% if item.DetailText %}
+            <li class="mb-4 notice-detail-row">
+              <div id="notice-detail-{{ loop.index0 }}" class="collapse">
+                <div class="card card-body border-0 bg-light notice-detail-card">
+                  {{ item.DetailText }}
+                  {% if item.attachments and item.attachments.length %}
+                  <div class="notice-attachments">
+                    <div class="notice-attachments-title">附件下載</div>
+                    <ul class="list-unstyled mb-0">
+                      {% for att in item.attachments %}
+                      <li>
+                        <a class="notice-attachment-link" href="{{ att.file | replace('\\\\', '/') }}" target="_blank" rel="noopener noreferrer">{{ att.label }}</a>
+                      </li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+                  {% endif %}
+                </div>
+              </div>
+            </li>
+            {% endif %}
+            {% endfor %}
+          {% else %}
+            <li class="mb-0 text-center">目前沒有公告</li>
+          {% endif %}
+        </ul>
       </div>
     </div>
   </div>
 </section>
-<!-- /events -->
-
-@@include('blocks/teachers.htm')
-
-<!-- blog -->
-<section class="section pt-0">
+<!-- /notice -->
+<!-- contact -->
+<section id="contact" class="section bg-gray anchor-section">
   <div class="container">
     <div class="row">
-      <div class="col-12">
-        <h2 class="section-title">Latest News</h2>
+      <div class="col-lg-12">
+        <h2 class="section-title">{{ data.website[0].contactTitle }}</h2>
       </div>
     </div>
-    @@include('blocks/blog.htm')
+    <div class="row">
+      <div class="col-lg-7 mb-4 mb-lg-0">
+        <form action="/contact.html" method="POST">
+          <input type="text" class="form-control mb-3" id="contact_name" name="contact_name" placeholder="姓名" required>
+          <input type="email" class="form-control mb-3" id="contact_mail" name="contact_mail" placeholder="Email" required>
+          <input type="text" class="form-control mb-3" id="contact_subject" name="contact_subject" placeholder="主旨" required>
+          <textarea name="contact_message" id="contact_message" class="form-control mb-3" placeholder="留言內容" required></textarea>
+          <button type="submit" value="send" class="btn btn-primary">送出訊息</button>
+        </form>
+      </div>
+      <div class="col-lg-5">
+        <p class="mb-5">{{ data.website[0].contactIntro }}</p>
+        <a href="tel:{{ data.website[0].contactPhone }}" class="text-color h5 d-block">{{ data.website[0].contactPhone }}</a>
+        <a href="mailto:{{ data.website[0].contactEmail }}" class="mb-5 text-color h5 d-block">{{ data.website[0].contactEmail }}</a>
+        <p>{{ data.website[0].contactAddress | safe }}</p>
+      </div>
+    </div>
   </div>
 </section>
-<!-- /blog -->
+<!-- /contact -->
 
 @@include('blocks/footer.htm')
 

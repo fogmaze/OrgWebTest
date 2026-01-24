@@ -10,6 +10,7 @@ const rimraf = require("rimraf");
 const comments = require("gulp-header-comment");
 const xlsx = require("xlsx")
 const fs = require("fs");
+const pathLib = require("path");
 const data = require("gulp-data");
 const nunjucks = require("gulp-nunjucks-render");
 
@@ -24,7 +25,8 @@ var path = {
     scss: "source/scss/**/*.scss",
     images: "source/images/**/*.+(png|jpg|gif|svg)",
     data: "data/data.xlsx",
-    dataImage: "data/dataImages/**/*.+(png|jpg|gif|svg)"
+    dataImage: "data/dataImages/**/*.+(png|jpg|gif|svg)",
+    dataAttachment: "data/dataAttachments/**/*.*"
   },
   build: {
     dirBuild: "theme/",
@@ -36,9 +38,73 @@ function loadExcelAsObject() {
   const wb = xlsx.readFile(path.src.data, { cellDates: true });
   const obj = {};
   wb.SheetNames.forEach(name => {
-    obj[name.trim()] = xlsx.utils.sheet_to_json(wb.Sheets[name], {  });
+    const sheetName = name.trim();
+    obj[sheetName] = xlsx.utils.sheet_to_json(wb.Sheets[name], { defval: "" });
   });
-  return obj;
+
+  const attachmentsRows = obj.attachments || [];
+  const attachmentsMap = {};
+  attachmentsRows.forEach((row) => {
+    const key = row.announcementIndex || row.noticeIndex || row.index || row.announcementId || row.id;
+    if (!key) {
+      return;
+    }
+    const file = row.file || row.path || row.attachment || row.url || row.link;
+    if (!file) {
+      return;
+    }
+    const cleanedFile = String(file).replace(/\\/g, "/");
+    const label = row.name || row.title || row.label || row.fileName || pathLib.basename(cleanedFile);
+    if (!attachmentsMap[key]) {
+      attachmentsMap[key] = [];
+    }
+    attachmentsMap[key].push({ file: cleanedFile, label });
+  });
+
+  if (obj.announcement) {
+    obj.announcement = obj.announcement.map((row) => {
+      let date = row.date;
+      if (date && typeof date === "number") {
+        const parsed = xlsx.SSF.parse_date_code(date);
+        if (parsed) {
+          date = new Date(Date.UTC(parsed.y, parsed.m - 1, parsed.d));
+        }
+      }
+      if (!(date instanceof Date)) {
+        date = new Date(date);
+      }
+      let dateYear = "";
+      let dateMd = "";
+      if (date && !isNaN(date.getTime())) {
+        dateYear = String(date.getUTCFullYear());
+        const dateMonth = String(date.getUTCMonth() + 1).padStart(2, "0");
+        const dateDay = String(date.getUTCDate()).padStart(2, "0");
+        dateMd = `${dateMonth}/${dateDay}`;
+      }
+      const key = row.index || row.id;
+      const attachments = attachmentsMap[key] || [];
+      return Object.assign({}, row, { dateYear, dateMd, attachments });
+    });
+  }
+
+  const normalizeBackslashes = (value) => {
+    if (typeof value === "string" && value.includes("\\")) {
+      return value.replace(/\\/g, "/");
+    }
+    if (Array.isArray(value)) {
+      return value.map(normalizeBackslashes);
+    }
+    if (value && typeof value === "object") {
+      const next = {};
+      Object.keys(value).forEach((key) => {
+        next[key] = normalizeBackslashes(value[key]);
+      });
+      return next;
+    }
+    return value;
+  };
+
+  return normalizeBackslashes(obj);
 }
 
 function excelToOneJson(done) {
@@ -154,6 +220,20 @@ gulp.task("dataImages:build", function () {
     );
 });
 
+// Data Attachments
+gulp.task("dataAttachments:build", function () {
+  return gulp
+    .src(path.src.dataAttachment, {
+      encoding: false,
+    })
+    .pipe(gulp.dest(path.build.dirDev + "dataAttachments/"))
+    .pipe(
+      bs.reload({
+        stream: true,
+      })
+    );
+});
+
 // Plugins
 gulp.task("plugins:build", function () {
   return gulp
@@ -185,6 +265,7 @@ gulp.task("watch:build", function () {
   gulp.watch(path.src.images, gulp.series("images:build"));
   gulp.watch(path.src.plugins, gulp.series("plugins:build"));
   gulp.watch(path.src.dataImage, gulp.series("dataImages:build"));
+  gulp.watch(path.src.dataAttachment, gulp.series("dataAttachments:build"));
   gulp.watch(path.src.data, gulp.series("data:json", "html:build"));
 });
 
@@ -198,6 +279,7 @@ gulp.task(
     "scss:build",
     "images:build",
     "dataImages:build",
+    "dataAttachments:build",
     "plugins:build",
     "others:build",
     gulp.parallel("watch:build", function () {
@@ -219,6 +301,7 @@ gulp.task(
     "scss:build",
     "images:build",
     "dataImages:build",
+    "dataAttachments:build",
     "plugins:build"
   )
 );

@@ -16,6 +16,35 @@
       "FounderPic": "創辦人圖片"
     }
   ],
-  "previousEvent": [],
-  "course": []
+  "course": [
+    {
+      "index": 0,
+      "Title": "Ai course",
+      "shortIntro": "st about ai",
+      "Img": "dataImages\\ShockIcon.png"
+    },
+    {
+      "index": 1,
+      "Title": "Train course",
+      "shortIntro": "about train",
+      "Img": "dataImages\\ShockIcon.png"
+    }
+  ],
+  "announcement": [
+    {
+      "index": 1001,
+      "date": "2026-01-23T16:00:00.000Z",
+      "Title": "New!!!",
+      "shortText": "short new test",
+      "DetailText": "this is the detail"
+    },
+    {
+      "index": 1002,
+      "date": "2026-01-23T16:00:00.000Z",
+      "Title": "New2!!!",
+      "shortText": "short new2 test",
+      "DetailText": 2222222222
+    }
+  ],
+  "attachments": []
 }
