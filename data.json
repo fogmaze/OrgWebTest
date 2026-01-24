@@ -1,0 +1,21 @@
+{
+  "website": [
+    {
+      "websiteTitle": "Title",
+      "middleLogo": "dataImages\\middleLogo.png"
+    }
+  ],
+  "aboutUs": [
+    {
+      "MainTitle": "主標題",
+      "LongIntro": "LongIntro",
+      "ShortIntro": "ShortIntro",
+      "BackgroundPic": "dataImages\\aboutUs\\success-story.jpg",
+      "Founder": "創辦人",
+      "FounderIntroduction": "創辦人介紹",
+      "FounderPic": "創辦人圖片"
+    }
+  ],
+  "previousEvent": [],
+  "course": []
+}

@@ -8,6 +8,10 @@ const autoprefixer = require("gulp-autoprefixer");
 const bs = require("browser-sync").create();
 const rimraf = require("rimraf");
 const comments = require("gulp-header-comment");
+const xlsx = require("xlsx")
+const fs = require("fs");
+const data = require("gulp-data");
+const nunjucks = require("gulp-nunjucks-render");
 
 var path = {
   src: {
@@ -19,12 +23,32 @@ var path = {
     js: "source/js/*.js",
     scss: "source/scss/**/*.scss",
     images: "source/images/**/*.+(png|jpg|gif|svg)",
+    data: "data/data.xlsx",
+    dataImage: "data/dataImages/**/*.+(png|jpg|gif|svg)"
   },
   build: {
     dirBuild: "theme/",
     dirDev: "theme/",
   },
 };
+
+function loadExcelAsObject() {
+  const wb = xlsx.readFile(path.src.data, { cellDates: true });
+  const obj = {};
+  wb.SheetNames.forEach(name => {
+    obj[name.trim()] = xlsx.utils.sheet_to_json(wb.Sheets[name], {  });
+  });
+  return obj;
+}
+
+function excelToOneJson(done) {
+  const all = loadExcelAsObject();
+  fs.writeFileSync("data.json", JSON.stringify(all, null, 2));
+  console.log("✔ data.json updated");
+  done();
+}
+
+gulp.task("data:json", excelToOneJson);
 
 // HTML
 gulp.task("html:build", function () {
@@ -35,6 +59,7 @@ gulp.task("html:build", function () {
         basepath: path.src.incdir,
       })
     )
+    /*
     .pipe(
       comments(`
     WEBSITE: https://themefisher.com
@@ -42,7 +67,9 @@ gulp.task("html:build", function () {
     FACEBOOK: https://www.facebook.com/themefisher
     GITHUB: https://github.com/themefisher/
     `)
-    )
+    )*/
+    .pipe(data(() => ({data: loadExcelAsObject() })))
+    .pipe(nunjucks())
     .pipe(gulp.dest(path.build.dirDev))
     .pipe(
       bs.reload({
@@ -113,6 +140,20 @@ gulp.task("images:build", function () {
     );
 });
 
+// Data Images
+gulp.task("dataImages:build", function () {
+  return gulp
+    .src(path.src.dataImage, {
+      encoding: false,
+    })
+    .pipe(gulp.dest(path.build.dirDev + "dataImages/"))
+    .pipe(
+      bs.reload({
+        stream: true,
+      })
+    );
+});
+
 // Plugins
 gulp.task("plugins:build", function () {
   return gulp
@@ -143,6 +184,8 @@ gulp.task("watch:build", function () {
   gulp.watch(path.src.js, gulp.series("js:build"));
   gulp.watch(path.src.images, gulp.series("images:build"));
   gulp.watch(path.src.plugins, gulp.series("plugins:build"));
+  gulp.watch(path.src.dataImage, gulp.series("dataImages:build"));
+  gulp.watch(path.src.data, gulp.series("data:json", "html:build"));
 });
 
 // Dev Task
@@ -154,6 +197,7 @@ gulp.task(
     "js:build",
     "scss:build",
     "images:build",
+    "dataImages:build",
     "plugins:build",
     "others:build",
     gulp.parallel("watch:build", function () {
@@ -174,6 +218,7 @@ gulp.task(
     "js:build",
     "scss:build",
     "images:build",
+    "dataImages:build",
     "plugins:build"
   )
 );

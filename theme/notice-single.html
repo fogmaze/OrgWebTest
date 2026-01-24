@@ -13,7 +13,7 @@
   <!-- Basic Page Needs
 	================================================== -->
   <meta charset="utf-8">
-  <title>Educenter - Education HTML Template</title>
+  <title>{{data.website[0].websiteTitle}}</title>
 
   <!-- Mobile Specific Metas
 	================================================== -->
@@ -59,7 +59,7 @@
 
 <!-- header -->
 <header class="fixed-top header">
-  <!-- top header -->
+  <!-- top header
   <div class="top-header py-2 bg-white">
     <div class="container">
       <div class="row no-gutters">
@@ -83,12 +83,12 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
   <!-- navbar -->
   <div class="navigation w-100">
     <div class="container">
       <nav class="navbar navbar-expand-lg navbar-dark p-0">
-        <a class="navbar-brand" href="index.html"><img src="images/logo.png" alt="logo"></a>
+        <a class="navbar-brand" href="index.html"><img src="{{data.website[0].middleLogo}}" alt="logo"></a>
         <button class="navbar-toggler rounded-0" type="button" data-toggle="collapse" data-target="#navigation"
           aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -108,6 +108,7 @@
             <li class="nav-item @@events">
               <a class="nav-link" href="events.html">EVENTS</a>
             </li>
+            <!--
             <li class="nav-item @@blog">
               <a class="nav-link" href="blog.html">BLOG</a>
             </li>
@@ -138,6 +139,7 @@
                 </li>
               </ul>
             </li>
+            -->
             <li class="nav-item @@contact">
               <a class="nav-link" href="contact.html">CONTACT</a>
             </li>
