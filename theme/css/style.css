@@ -145,8 +145,8 @@ h6, .h6 {
 }
 .btn-primary:active, .btn-primary:hover, .btn-primary.focus, .btn-primary:focus, .btn-primary.active {
   color: #ffbc3b !important;
-  background-color: #ffab08 !important;
-  border-color: #ffab08 !important;
+  background-color: rgb(255, 170.5663265306, 8) !important;
+  border-color: rgb(255, 170.5663265306, 8) !important;
 }
 
 .btn-outline-primary {
@@ -183,12 +183,12 @@ body {
 }
 
 ::-moz-selection {
-  background: #ffcd6e;
+  background: rgb(255, 205.4336734694, 110);
   color: #fff;
 }
 
 ::selection {
-  background: #ffcd6e;
+  background: rgb(255, 205.4336734694, 110);
   color: #fff;
 }
 

@@ -102,7 +102,9 @@ gulp.task("js:build", function () {
 // Images
 gulp.task("images:build", function () {
   return gulp
-    .src(path.src.images)
+    .src(path.src.images, {
+      encoding: false,
+    })
     .pipe(gulp.dest(path.build.dirDev + "images/"))
     .pipe(
       bs.reload({
