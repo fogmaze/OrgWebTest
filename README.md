@@ -9,7 +9,7 @@ npm install
 ```
 
 ## 如何協作
-1. 基本方法
+1. 基本方法  
    在電腦上安裝git，並使用git來進行資料檔案同步，git使用方法可以在網路上找到，基本會用到clone / add / commit / pull / push指令
    目前使用git pages架設此網站，使用git push更新檔案內容後等個一下子就會自動更新在網站頁面上。
 
