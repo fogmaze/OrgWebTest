@@ -3,10 +3,12 @@
 
 ## Setup
 本項目使用node.js，配合gulp、nunjucks等套件進行靜態網站生成，使用Bootstrap風格定義模板。
-要建置此專案，你需要先安裝npm，並用以下指令安裝依賴
+要建置此專案，你需要先安裝node.js，並用以下指令安裝依賴  
 ```bash
 npm install
 ```
+node.js 可以從以下官網安裝  
+https://nodejs.org/zh-tw/download
 
 ## 如何協作
 1. 基本方法  
@@ -32,7 +34,7 @@ npm run build
 ```bash
 npm run build
 ```
-即可將theme中的內容，生成html網頁於 theme 資料夾下
+即可將sourse中的內容，生成html網頁於 theme 資料夾下
 
 開發時，可以用
 ```bash
